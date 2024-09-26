@@ -4,7 +4,6 @@ import cn from "classnames"
 import styles from "./chat.module.css"
 import Massage from '../../components/massage/massage';
 import { useSelector } from 'react-redux';
-import { store } from '../../store/store';
 import { useEffect, useState,useRef } from 'react';
 
 const ChatPage = () => {
@@ -24,12 +23,11 @@ const ChatPage = () => {
  useEffect(() => {
         websocketRef.current = new WebSocket('ws://localhost:8080');
 
-        // Обработка полученного сообщения от WebSocket сервера
         websocketRef.current.onmessage = (event) => {
             const data = JSON.parse(event.data);
             setState((prev) => {
-                const update = [...prev, data]; // Добавляем новое сообщение
-                sessionStorage.setItem("message", JSON.stringify(update)); // Сохраняем историю в sessionStorage
+                const update = [...prev, data]; 
+                sessionStorage.setItem("message", JSON.stringify(update)); 
                 return update;
             });
         };
@@ -43,7 +41,7 @@ const ChatPage = () => {
         };
 
         return () => {
-            websocketRef.current.close(); // Закрываем соединение при размонтировании
+            websocketRef.current.close(); 
         };
     }, []);
 
