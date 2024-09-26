@@ -21,18 +21,31 @@ const ChatPage = () => {
             setInputValue("")
         }};
 
-    useEffect(() => {
+ useEffect(() => {
         websocketRef.current = new WebSocket('ws://localhost:8080');
 
+        // Обработка полученного сообщения от WebSocket сервера
         websocketRef.current.onmessage = (event) => {
             const data = JSON.parse(event.data);
             setState((prev) => {
-                const update = [...prev, data];
-                sessionStorage.setItem("massage", JSON.stringify(update));
+                const update = [...prev, data]; // Добавляем новое сообщение
+                sessionStorage.setItem("message", JSON.stringify(update)); // Сохраняем историю в sessionStorage
                 return update;
             });
         };
-      }, []);
+
+        websocketRef.current.onclose = () => {
+            console.log('Соединение закрыто');
+        };
+
+        websocketRef.current.onerror = (error) => {
+            console.error('Ошибка WebSocket:', error);
+        };
+
+        return () => {
+            websocketRef.current.close(); // Закрываем соединение при размонтировании
+        };
+    }, []);
 
     return (
         <>  

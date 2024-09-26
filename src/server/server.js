@@ -20,5 +20,9 @@ wss.on('connection', (ws) => {
             console.error('Ошибка при обработке сообщения:', error);
         }
     });
+
+    ws.on('close', () => {
+        console.log('Соединение закрыто');
+    });
 });
 
