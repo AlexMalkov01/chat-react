@@ -1,0 +1,19 @@
+:root {
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    font-family: sans-serif;
+}
+
+body {
+    background: rgb(252, 252, 252);
+}
+
+h1 {
+    font-size: 18px;
+}

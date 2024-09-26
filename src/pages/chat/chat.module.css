@@ -1,0 +1,93 @@
+.IUSER {
+    display: inline-block;
+    position: relative;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+.dicarationUser {
+    position: absolute;
+    right: -15px;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: green;
+}
+
+.wrapperMassage {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    gap: 30px;
+    width: 100%;
+    height: 500px;
+    background-color: rgb(196, 235, 253);
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 12px;
+    overflow: auto;
+    margin-bottom: 50px;
+    caret-color:  rgb(153, 27, 170)
+    
+}
+
+.wrapperMassage::-webkit-scrollbar {
+    width: 8px;
+}
+
+.wrapperMassage::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255); 
+    opacity: 0.5px;
+  }
+
+.wrapperMassage::-webkit-scrollbar-thumb {
+    background-color: rgb(90, 175, 255);  
+    border-radius: 20px; 
+} 
+
+.msgUser {
+    position: relative;
+    display: block;
+    max-width: 500px;
+
+    padding: 10px 50px 10px 25px;
+    border-radius: 12px;
+    background-color: antiquewhite;
+    word-wrap: break-word; /* Переносит длинные слова */
+    overflow-wrap: break-word; /* Для совместимости с другими браузерами */
+    white-space: normal; /* Устанавливает перенос текста на новые строки */
+}
+
+.msgSoccet {
+    position: relative;
+    display: block;
+    max-width: 500px;
+    margin-left: auto;
+    border-radius: 12px;
+    padding: 10px 50px 10px 25px;
+    background-color: antiquewhite;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    white-space: normal; 
+}
+
+.userName {
+    position: absolute;
+    font-size: 14px;
+    font-weight: 500;
+    top: -17px;
+    left: 15px;
+}
+
+.btn {
+    border: none;
+    color: #fff;
+    background: rgb(123, 147, 255);
+    padding: 10px;
+    border-radius: 14px;
+
+    cursor: pointer;
+}
+
+

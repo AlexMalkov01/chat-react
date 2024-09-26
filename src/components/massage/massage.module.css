@@ -1,0 +1,34 @@
+.msgUser {
+    position: relative;
+    display: block;
+    max-width: 500px;
+    padding: 10px 50px 10px 25px;
+    border-radius: 12px;
+    background-color: rgb(98, 255, 163);
+    word-wrap: break-word; /* Переносит длинные слова */
+    overflow-wrap: break-word; /* Для совместимости с другими браузерами */
+    white-space: normal; /* Устанавливает перенос текста на новые строки */
+    margin-right: auto;
+}
+
+.msgSoccet {
+    position: relative;
+    display: block;
+    max-width: 500px;
+    margin-left: auto;
+    border-radius: 12px;
+    padding: 10px 50px 10px 25px;
+    background-color: antiquewhite;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    white-space: normal; 
+}
+
+
+.userName {
+    position: absolute;
+    font-size: 14px;
+    font-weight: 500;
+    top: -17px;
+    left: 15px;
+}
