@@ -6,9 +6,8 @@ import { useEffect } from "react"
 
 
 const Layout = () => {
-
     const redirect = useNavigate()
-
+    
     useEffect(()=>{
         redirect("/login")
     },[])

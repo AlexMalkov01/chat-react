@@ -21,30 +21,24 @@ const ChatPage = () => {
                 massage:value,
                 userName:userName
             }]
-            
+
             sessionStorage.setItem("massage", JSON.stringify(update))
             return update
         })
             setInputValue("")
-            
         }
+    };
 
-    }
     return (
         <>  
         <h1 className={cn(styles.IUSER)}>
         {userName}
-        <div className={cn(styles.dicarationUser)}>
-
-        </div>
+        <div className={cn(styles.dicarationUser)}/>
         </h1>
-
          <div className={cn(styles.wrapperMassage)}>
-
         {
-            state.map((item,props)=><Massage userName={item.userName}>{item.massage}</Massage>)
+            state.map((item,idx)=><Massage key={idx} userName={item.userName}>{item.massage}</Massage>)
         }
-
          </div>
             <Box sx={{display:"flex" ,gap:"25px" , width: 800, maxWidth: '100%' }}>
                 <TextField value={valueInput} onChange={(e)=>setInputValue(e.target.value)} fullWidth label="Введите сообщение" id="Введите сообщение" />

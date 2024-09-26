@@ -33,14 +33,11 @@ const Login = () => {
         <button onClick={setUser} >ОК</button>
         </>
         }
-        
         {
             !!userName &&
             <h1 className={cn(styles.IUSER)}>
             {userName}
-            <div className={cn(styles.dicarationUser)}>
-    
-            </div>
+            <div className={cn(styles.dicarationUser)}/>
             </h1>
         }
         </>
