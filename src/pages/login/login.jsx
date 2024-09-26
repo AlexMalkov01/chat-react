@@ -29,8 +29,9 @@ const Login = () => {
         {!userName 
         &&
         <>
-        <input value={inputValue} onChange={(e)=> setInputValue(e.target.value)} type="text" />
-        <button onClick={setUser} >ОК</button>
+        <h1 className={cn(styles.h1)}>Введите имя пользователя</h1>
+        <input className={cn(styles.input)} value={inputValue} onChange={(e)=> setInputValue(e.target.value.trim())} type="text" />
+        <button className={cn(styles.btn)} onClick={setUser} >ОК</button>
         </>
         }
         {

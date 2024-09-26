@@ -15,3 +15,25 @@
     border-radius: 50%;
     background-color: green;
 }
+
+.h1 {
+    margin-bottom: 40px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.input {
+    border-radius: 12px;
+    min-width: 400px;
+    padding: 10px;
+    margin-right: 20px;
+}
+
+.btn {
+    border-radius: 12px;
+    padding: 10px;
+    background-color: rgb(4, 190, 4);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}

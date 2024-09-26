@@ -5,29 +5,34 @@ import styles from "./chat.module.css"
 import Massage from '../../components/massage/massage';
 import { useSelector } from 'react-redux';
 import { store } from '../../store/store';
-import { useState } from 'react';
+import { useEffect, useState,useRef } from 'react';
 
 const ChatPage = () => {
     
-    const hisoriMassage = JSON.parse(sessionStorage.getItem("massage")) 
-    const userName = useSelector((store)=> store.user.user)
-    const [state , setState] = useState(hisoriMassage ?? [])
-    const [valueInput, setInputValue] = useState("")
+    const websocketRef = useRef(null); 
+    const hisoriMassage = JSON.parse(sessionStorage.getItem("massage"));
+    const userName = useSelector((store)=> store.user.user);
+    const [state , setState] = useState(hisoriMassage ?? []);
+    const [valueInput, setInputValue] = useState("");
 
     const setMassage = (value) => {
         if (value.length) {
-            setState((prev)=> {
-             const update =   [...prev , {
-                massage:value,
-                userName:userName
-            }]
-
-            sessionStorage.setItem("massage", JSON.stringify(update))
-            return update
-        })
+            websocketRef.current.send(JSON.stringify({ massage:value,userName:userName})) 
             setInputValue("")
-        }
-    };
+        }};
+
+    useEffect(() => {
+        websocketRef.current = new WebSocket('ws://localhost:8080');
+
+        websocketRef.current.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            setState((prev) => {
+                const update = [...prev, data];
+                sessionStorage.setItem("massage", JSON.stringify(update));
+                return update;
+            });
+        };
+      }, []);
 
     return (
         <>  
