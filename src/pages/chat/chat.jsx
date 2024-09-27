@@ -4,7 +4,8 @@ import cn from "classnames"
 import styles from "./chat.module.css"
 import Massage from '../../components/massage/massage';
 import { useSelector } from 'react-redux';
-import { useEffect, useState,useRef } from 'react';
+import { useEffect, useState,useRef, useMemo } from 'react';
+import ListMessage from '../../components/list-message/listMessage';
 
 const ChatPage = () => {
     
@@ -52,9 +53,7 @@ const ChatPage = () => {
         <div className={cn(styles.dicarationUser)}/>
         </h1>
          <div className={cn(styles.wrapperMassage)}>
-        {
-            state.map((item,idx)=><Massage key={idx} userName={item.userName}>{item.massage}</Massage>)
-        }
+           <ListMessage state={state}/>
          </div>
             <Box sx={{display:"flex" ,gap:"25px" , width: 800, maxWidth: '100%' }}>
                 <TextField value={valueInput} onChange={(e)=>setInputValue(e.target.value)} fullWidth label="Введите сообщение" id="Введите сообщение" />
