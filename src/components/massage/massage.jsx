@@ -8,7 +8,7 @@ const Massage = ({userName,children}) => {
     
     return (
         <>
-                <div className={cn( {
+                <div className={cn( "", {
                     [styles.msgUser]: userName == IUser,
                     [styles.msgSoccet]: userName !== IUser,
                 })}>

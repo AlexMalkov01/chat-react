@@ -15,7 +15,7 @@ const ChatPage = () => {
     const [valueInput, setInputValue] = useState("");
 
     const setMassage = (value) => {
-        if (value.length) {
+        if (value.length) { 
             websocketRef.current.send(JSON.stringify({ massage:value,userName:userName})) 
             setInputValue("")
         }};
@@ -48,10 +48,15 @@ const ChatPage = () => {
 
     return (
         <>  
+        <header className={cn(styles.header)}>
         <h1 className={cn(styles.IUSER)}>
         {userName}
         <div className={cn(styles.dicarationUser)}/>
         </h1>
+        {!!state.length && <div className={cn(styles.isOnline)} >{state[state.length -1].count} в сети</div>}
+        {!state.length && <div className={cn(styles.isOnline)} >Начните общение</div>}
+        </header>
+        
          <div ref={scrolling} className={cn(styles.wrapperMassage)}>
            <ListMessage state={state}/>
          </div>

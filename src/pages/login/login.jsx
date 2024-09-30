@@ -8,21 +8,15 @@ import styles from "./login.module.css"
 const Login = () => {
     
     const user = useSelector((store)=> store.user.user);
-    const [userName , setUserName] = useState(getUser());
+    const [userName , setUserName] = useState(localStorage.getItem("user") ?? "");
     const [inputValue , setInputValue] = useState("");
     const disputch = useDispatch();
 
-    const getUser = () =>{
-        return  localStorage.getItem("user") ?? ""
-    }
-    const setUser = () => {
-        disputch(userSlice.actions.initUser(inputValue))
+    const setUser = (value) => {
+        disputch(userSlice.actions.initUser(value));
+        setUserName(value)
     }
 
-    useEffect(()=>{
-        setUserName(getUser())
-    },[user]) 
-    
     return (
         <>
         {!userName 
@@ -30,7 +24,7 @@ const Login = () => {
         <>
         <h1 className={cn(styles.h1)}>Введите имя пользователя</h1>
         <input className={cn(styles.input)} value={inputValue} onChange={(e)=> setInputValue(e.target.value.trim())} type="text" />
-        <button className={cn(styles.btn)} onClick={setUser} >ОК</button>
+        <button className={cn(styles.btn)} onClick={()=>setUser(inputValue)} >ОК</button>
         </>
         }
         {

@@ -2,8 +2,10 @@ import { WebSocketServer } from 'ws';
 
 const wss = new WebSocketServer({ port: 8080 });
 
-wss.on('connection', (ws) => {
+let count = 0
 
+wss.on('connection', (ws) => {
+    count +=1
     ws.on('message', (message) => {
         try {
             const parsedMessage = JSON.parse(message);
@@ -11,7 +13,7 @@ wss.on('connection', (ws) => {
 
             wss.clients.forEach((client) => {
                 if (client.readyState === ws.OPEN) {
-                    client.send(JSON.stringify(parsedMessage));
+                    client.send(JSON.stringify({...parsedMessage,count:count}));
                 }
             });
         } catch (error) {
@@ -20,6 +22,7 @@ wss.on('connection', (ws) => {
     });
 
     ws.on('close', () => {
+        count-=1
         console.log('Соединение закрыто');
     });
 });
