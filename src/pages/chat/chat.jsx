@@ -8,9 +8,9 @@ import { useEffect, useState,useRef, useMemo } from 'react';
 import ListMessage from '../../components/list-message/listMessage';
 
 const ChatPage = () => {
-    
+    const scrolling = useRef(null)
     const websocketRef = useRef(null); 
-    const hisoriMassage = JSON.parse(sessionStorage.getItem("massage"));
+    const hisoriMassage = JSON.parse(sessionStorage.getItem("message"));
     const userName = useSelector((store)=> store.user.user);
     const [state , setState] = useState(hisoriMassage ?? []);
     const [valueInput, setInputValue] = useState("");
@@ -23,7 +23,6 @@ const ChatPage = () => {
 
  useEffect(() => {
         websocketRef.current = new WebSocket('ws://localhost:8080');
-
         websocketRef.current.onmessage = (event) => {
             const data = JSON.parse(event.data);
             setState((prev) => {
@@ -32,11 +31,9 @@ const ChatPage = () => {
                 return update;
             });
         };
-
         websocketRef.current.onclose = () => {
             console.log('Соединение закрыто');
         };
-
         websocketRef.current.onerror = (error) => {
             console.error('Ошибка WebSocket:', error);
         };
@@ -46,13 +43,17 @@ const ChatPage = () => {
         };
     }, []);
 
+    useEffect(()=>{
+        scrolling.current.scroll(0,scrolling.current.scrollHeight);
+    },[state.length]);
+
     return (
         <>  
         <h1 className={cn(styles.IUSER)}>
         {userName}
         <div className={cn(styles.dicarationUser)}/>
         </h1>
-         <div className={cn(styles.wrapperMassage)}>
+         <div ref={scrolling} className={cn(styles.wrapperMassage)}>
            <ListMessage state={state}/>
          </div>
             <Box sx={{display:"flex" ,gap:"25px" , width: 800, maxWidth: '100%' }}>
