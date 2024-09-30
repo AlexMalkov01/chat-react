@@ -6,6 +6,12 @@ import cn from "classnames"
 import styles from "./login.module.css"
 
 const Login = () => {
+    
+    const user = useSelector((store)=> store.user.user);
+    const [userName , setUserName] = useState(getUser());
+    const [inputValue , setInputValue] = useState("");
+    const disputch = useDispatch();
+
     const getUser = () =>{
         return  localStorage.getItem("user") ?? ""
     }
@@ -13,17 +19,10 @@ const Login = () => {
         disputch(userSlice.actions.initUser(inputValue))
     }
 
-    const user = useSelector((store)=> store.user.user)
-    const [userName , setUserName] = useState(getUser())
-    const [inputValue , setInputValue] = useState("")
-    const disputch = useDispatch()
-    
-    console.log(user);
     useEffect(()=>{
         setUserName(getUser())
     },[user]) 
     
-
     return (
         <>
         {!userName 
